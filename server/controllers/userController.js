@@ -49,7 +49,7 @@ const user_login_post = async (req, res)=>{
         return res.status(401).json({ errors });
     }
     const token = createToken(user._id);
-    res.cookie('jwt', `${process.env.SECRET_KEY}`, {expiresIn: maxAge*1000});
+    res.cookie('jwt', token, {'httpOnly': true, maxAge: maxAge*1000});
     return res.status(200).json({ token });
 }catch(err){
         const errors = handleErrors(err);
