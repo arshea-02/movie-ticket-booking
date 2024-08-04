@@ -1,10 +1,15 @@
 import  mongoose, { Schema } from 'mongoose'
-import validator from 'validator';
 import pkg from 'validator'
 
 const { isEmail } = pkg;
 
 const adminSchema = new Schema({
+    adminId:{
+        type: String,
+        required: true,
+        unique: true,
+        length: 10,
+    },
     name:{
         type: String,
         required: [true, 'This is a required field'],
@@ -22,7 +27,9 @@ const adminSchema = new Schema({
     password:{
         type: String,
         required: [true, 'This is a required Field'],
-        minlength: [8, 'Password should be atleast 8 characters long'],
+        validator: [(password)=>pkg.matches(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"),
+            "Use special Characters, lower and upper case alphabets and digits"
+        ],
     },
 })
 
