@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-import User from '../models/UserModel.js'
+import Admin from '../models/Adminmodel.js'
 import handleErrors from './errorControl.js'
+import createID from '../middleware/createID.js'
 import 'dotenv/config'
 
 const maxAge = 1 * 24 * 60 * 60;
@@ -12,17 +13,19 @@ const createToken = (id)=>{
     return jwt.sign({ id }, `${process.env.SECRET_KEY}`, {expiresIn: maxAge})
 } 
 
-const user_signup_get = async (req, res)=>{
+
+const admin_signup_get = async (req, res)=>{
     res.render('signup');
 }
 
-const user_signup_post =  async (req, res)=>{
+const admin_signup_post =  async (req, res)=>{
     try{
-        const { fullname, username, email, password } = req.body;
+        const {name, dob, email, password } = req.body;
         const hashedPwd = await hashedPassword(password);
-        const user = new User({fullname, username, email, password: hashedPwd});
-        await user.save();
-        res.status(201).json({ user });
+        const newadminId = createID(name);
+        const admin = new Admin({adminId: newadminId, name, dob, email, password: hashedPwd});
+        await admin.save();
+        res.status(201).json({ admin });
 
     }catch(err){
         const errors = handleErrors(err);
@@ -30,25 +33,25 @@ const user_signup_post =  async (req, res)=>{
     }
 }
 
-const user_login_get = async (req, res)=>{
+const admin_login_get = async (req, res)=>{
     res.render('login');
 }
 
-const user_login_post = async (req, res)=>{
-    const { username, password } = req.body;
+const admin_login_post = async (req, res)=>{
+    const { adminId, password } = req.body;
     try{
-       const user = User.findOne(username);
+       const admin = Admin.findOne({ adminId });
     
-    if(!user){
-        const errors = {username: 'Inncorrect Username'};
+    if(!admin){
+        const errors = {adminId: 'Inncorrect ID'};
         return res.status(401).json({ errors });
     }
-    const checkMatchPasswords = bcrypt.compare(password, user.password);
+    const checkMatchPasswords = bcrypt.compare(password, admin.password);
     if(!checkMatchPasswords){
         const errors = { password: "Incorrect Password"};
         return res.status(401).json({ errors });
     }
-    const token = createToken(user._id);
+    const token = createToken(admin._id);
     res.cookie('jwt', token, {'httpOnly': true, maxAge: maxAge*1000});
     return res.status(200).json({ token });
 }catch(err){
@@ -57,18 +60,18 @@ const user_login_post = async (req, res)=>{
     }
 }
 
-const update_user_put = async (req, res)=>{
+const update_admin_put = async (req, res)=>{
     const id = req.params.id;
-    const { fullname, username, password } = req.body;
+    const { password } = req.body;
 
     try{
-        const user = await User.findByIdAndUpdate(id, {fullname, username, password: hashedPassword(password)});
-        if(!user){
-            const errors = {username: 'User Not Found'};
+        const admin = await Admin.findByIdAndUpdate(id, { password: hashedPassword(password) });
+        if(!admin){
+            const errors = {adminId: 'User Not Found'};
             return res.status(401).json({ errors });
         }
-        await user.save();
-        res.status(200).json({ user });
+        await admin.save();
+        res.status(200).json({ admin });
 
     }catch(err){
         const errors = handleErrors(err);
@@ -76,11 +79,11 @@ const update_user_put = async (req, res)=>{
     }
 }
 
-const delete_user = async (req, res)=>{
+const delete_admin = async (req, res)=>{
     const id = req.params.id;
     try{
-        const user = await User.findByIdAndDelete(id);
-        if(!user){
+        const admin = await Admin.findByIdAndDelete(id);
+        if(!admin){
             const errors = 'User does not Exist';
             return res.status(401).json({ errors })
         }
@@ -93,4 +96,4 @@ const delete_user = async (req, res)=>{
 
 }
  
-export default { user_signup_get, user_signup_post, user_login_get, user_login_post, update_user_put, delete_user }
+export default { admin_signup_get, admin_signup_post, admin_login_get, admin_login_post, update_admin_put, delete_admin }

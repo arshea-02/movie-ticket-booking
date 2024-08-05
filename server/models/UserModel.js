@@ -21,7 +21,9 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: [true, 'This is a required Field'],
-        minlength: [8, 'Minimum length should be 8 characters'],
+        validator: [(password)=>pkg.matches(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"),
+            "Use special Characters, lower and upper case alphabets and digits"
+        ],
     },
 })
 
