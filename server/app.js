@@ -1,31 +1,38 @@
 import express from 'express'
 import mongoose from 'mongoose'
+import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import 'dotenv/config'
 import userRoutes from './routes/userRoute.js'
-import adminRoutes from './routes/adminRoutes.js'
+import movieRoutes from './routes/movieRoutes.js'
+import showRoutes from './routes/showRoutes.js'
+import bookingRoutes from  './routes/bookingRoutes.js'
 
 const PORT = process.env.SERVER_PORT;
 const app = express();
 app.use(express.json());
+app.use(cors());
 app.use(cookieParser());
 
 
 const connection = async()=>{
     try{
         const _ = await mongoose.connect(process.env.DB_STRING);
-        console.log('Connected to DB')
-    }catch(err){console.log('Error Connecting to DB', err)}
+        console.log('Connected to DB');
+    }catch(err){console.log('Something went wrong')}
 }
 
 connection();
+
 app.get('/', (req, res)=>{
-    res.redirect('/movies')
-})
+    res.status(200).redirect('/movies')
+});
+
 app.use('/user', userRoutes);
-app.use('/admin', adminRoutes);
-
-
+app.use('/movies', movieRoutes);
+app.use('/shows', showRoutes);
+app.use('/bookseats', bookingRoutes)
+;
 app.listen(PORT, ()=>{
     console.log(`App listening on ${PORT}`)
 });
