@@ -1,15 +1,24 @@
-import express, { Router } from 'express'
+import express from 'express'
 import userControllers from '../controllers/userController.js'
+import verifyToken from '../utils/verifyToken.js';
 
 const router = express.Router();
 
-router.get('/signup', userControllers.user_signup_get);
+router.post('/signup', userControllers.postSignup);
 
-router.post('/signup', userControllers.user_signup_post);
+router.post('/login', userControllers.postLogin);
 
+<<<<<<< Updated upstream
 router.put('/:id', userControllers.update_user_put);
+=======
+router.put('/:id', verifyToken, userControllers.updateUser);
 
-router.delete('/:id', userControllers.delete_user);
+router.put('/reset-password/:token', userControllers.resetPassword);
+
+router.delete('/:id', verifyToken, userControllers.delUser);
+>>>>>>> Stashed changes
+
+router.get('/logout', userControllers.logout);
 
 router.get('/login', userControllers.user_login_get);
 

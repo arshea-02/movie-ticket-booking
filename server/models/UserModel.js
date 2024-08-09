@@ -23,7 +23,13 @@ const userSchema = new Schema({
         required: [true, 'This is a required Field'],
         minlength: [8, 'Minimum length should be 8 characters'],
     },
+    isAdmin:{
+        type: Boolean,
+        default: false,
+    },
+    resetPassword: String,
+    resetPasswordExpiresAt: Date,
+    verificationToken: String,
 })
 
-const User = mongoose.model('User', userSchema);
-export default User;
+export default mongoose.model('User', userSchema);

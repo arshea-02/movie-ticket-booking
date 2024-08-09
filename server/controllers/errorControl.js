@@ -1,4 +1,3 @@
-//import User from '../models/UserModel.js'
 
 const handleError = (err)=>{
     let errors = { fullname: '', username: '', email: '', password: ''};
@@ -8,7 +7,7 @@ const handleError = (err)=>{
         return errors;
     }
 
-    if(err.message.includes('Validation Failed')){
+    if(err.message.includes('validation failed')){
         Object.values(err.errors).forEach(({properties})=>{
             errors[properties.path] = properties.message;
         })
