@@ -1,4 +1,4 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose, { mongo, Schema } from 'mongoose'
 
 const movieSchema = new Schema({
     movieId:{
@@ -10,30 +10,26 @@ const movieSchema = new Schema({
         type: String,
         required: [true, "This is a required Field"],
     },
-    showdate:{
-        type: Date,
-        required: [true, "This is a Required Field"],
+    posterURL:{
+        type: String,
+        required: true,
     },
-    showtime:{
-        type: Date,
-        required: [true, 'This is a required field'],
+    duration:{
+        type: String, //in minutes
     },
     genre:{
         type: String,
         enum: ["Horror", "Anime", "Romance", "Action", "Mystery"],
     },
-    rating:{
-        //five stars
-    },
     rated: {
+        type: String,
         enum: ["G", "PG", "PG-13", "R", "NC-17"],
-    },
-    adminId:{
-        type: mongoose.Schema.ObjectId,
-        ref: "Admin",
         required: true,
     },
-}, {timestamp: true})
+    adminId:{
+        type: String,
+        required: true,
+    },
+}, {timestamps: true})
 
-const Movie = mongoose.model('Movie', movieSchema);
-export default Movie;
+export default mongoose.model('Movie', movieSchema);
