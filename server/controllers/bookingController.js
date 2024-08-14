@@ -12,7 +12,7 @@ async function costOfSeatType(seatType){
     return costSchema.options.enum[index];
 }
 
-const gTotForm = (req, res)=>{
+const goTotForm = (req, res)=>{
     res.status(200).json('You can Reserve Seats Now');
 }
 
@@ -51,4 +51,4 @@ const bookSeat = async(req, res)=>{
     }
 }
 
-export default { gTotForm, bookSeat };
+export default { goTotForm, bookSeat };

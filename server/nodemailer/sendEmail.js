@@ -1,13 +1,14 @@
 import handleError from "../controllers/errorControl.js";
 import {transporter} from "./mail.js";
 
-export const sendVerificationEmail = (email, token) =>{
+export const sendVerificationEmail = (email, token, username) =>{
   try{
     transporter.sendMail({
       from: "Jackson Gislason",
       to: email,
       subject: "Verify Your Email",
-      html: `<p>Thank You for Siging up. Please verify your email.</p><a href="${process.env.CLIENT_URL}/login"><button>Verify</button></a>`,
+      html: `<p>Thank You for Siging up. Please verify your email.</p>
+            <p>Your username is: ${username}</p><a href="${process.env.CLIENT_URL}/login"><button>Verify</button></a>`,
     });
     
     return token;

@@ -1,18 +1,25 @@
-import express, { Router } from 'express'
+import express from 'express'
 import userControllers from '../controllers/userController.js'
+import verifyToken from '../utils/verifyToken.js';
 
 const router = express.Router();
 
-router.get('/signup', userControllers.user_signup_get);
+router.get('/', userControllers.findUser);
 
-router.post('/signup', userControllers.user_signup_post);
+router.post('/signup', userControllers.postSignup);
 
-router.get('/login', userControllers.user_login_get);
+router.post('/login', userControllers.postLogin);
 
-router.post('/login', userControllers.user_login_post);
+router.put('/:id', verifyToken, userControllers.updateUser);
 
-router.put('/:id', userControllers.update_user_put);
+router.put('/reset-password/:token', userControllers.resetPassword);
 
-router.delete('/:id', userControllers.delete_user);
+router.delete('/:id', verifyToken, userControllers.delUser);
+
+router.get('/logout', userControllers.logout);
+
+// router.get('/login', userControllers.user_login_get);
+
+// router.get('/signup', userControllers.getSignup);
 
 export default router

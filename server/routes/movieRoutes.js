@@ -1,16 +1,19 @@
+
 import express from 'express'
 import movieContorller from '../controllers/movieController.js';
+import isAdmin from '../middleware/isAdmin.js';
+import verifyToken from '../utils/verifyToken.js';
 
 const router = express.Router();
 
-router.get('/', movieContorller.movie_index);
+router.get('/', movieContorller.movieIndex);
 
-router.post('/add', movieContorller.movie_add_post);
+router.post('/add', verifyToken, isAdmin, movieContorller.postMovieAdd);
 
-router.get('/add', movieContorller.movie_add_get);
+router.get('/:id', movieContorller.movieDetails);
 
-router.put('/edit/:id', movieContorller.movie_edit_put);
+router.put('/edit/:id', verifyToken, isAdmin, movieContorller.editMovie);
 
-router.delete('/delete/:id', movieContorller.movie_delete);
+router.delete('/delete/:id', verifyToken, isAdmin, movieContorller.delMovie);
 
 export default router;

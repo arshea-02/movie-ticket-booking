@@ -11,7 +11,7 @@ router.put('/edit/:id', isAdmin, verifyToken, showController.editShow);
 
 router.put('/delete/:id', isAdmin, verifyToken, showController.editShow);
 
-router.get('/view/:movieId', showController.displayShows);
+router.get('/view/:movieId', verifyToken, showController.displayShows);
 
 router.get('/:id', showController.reserveSeats);
 

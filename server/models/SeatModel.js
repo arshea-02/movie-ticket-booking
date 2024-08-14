@@ -5,11 +5,6 @@ const seatSchema = new Schema({
         type: [Number],
         required: true,
     },
-    // screenNo:{
-    //     type: Number,
-    //     ref: "Screen",
-    //     required: true,
-    // },
     seatType:{
         type: String,
         enum: ["silver", "gold", "sofa"],

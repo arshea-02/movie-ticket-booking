@@ -10,9 +10,9 @@ const displayShows = async (req, res)=>{
         if(shows.length===0){
             res.status(204).json('No shows Exist for this Movie')
         }
-        res.status(302).json({shows});
+        res.status(200).json(shows);
     }catch(err){
-        console.log(err);
+        res.status(400).json('No Shows', err);
     }
 }
 
