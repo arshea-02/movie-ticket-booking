@@ -1,0 +1,55 @@
+.movie-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 1.5rem;
+  padding: 2rem;
+}
+  
+.movie-card {
+  background-color: rgb(244, 234, 203);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.movie-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.movie-card img[alt]::after {
+  content: attr(alt);
+  display: block;
+  font-size: 0.8em;
+  color: #666;
+  margin-top: 0.5em;
+}
+
+.movie-card .content {
+  padding: 1rem;
+  margin-top: 0;
+  color: black;
+  font-size: 1.2rem;
+}
+
+.view-shows {
+  background-color: rgb(194, 4, 4);
+  border: none;
+  color: rgb(226, 208, 235);
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.2rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.9rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  border: 2px solid rgb(200, 172, 214);
+}
+
+  

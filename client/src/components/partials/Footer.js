@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+//import { Link } from 'react-router-dom'
 import 'D:/NodeJS/movie-ticket-booking/client/src/assests/footer.css'
 
 const Footer = ()=> {

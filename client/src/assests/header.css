@@ -10,6 +10,7 @@
     text-decoration: none;
     margin: 0;
     color: white;
+    cursor: pointer;
   }
   
   .header button {
@@ -21,10 +22,6 @@
     border: 1px solid transparent;
     transition: background-color 0.2s ease;
     background-color: transparent;
-  }
-  
-  .header h2:hover {
-    color: rgb(255, 115, 115);
   }
 
   .header button:hover {
