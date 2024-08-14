@@ -4,7 +4,7 @@ import verifyToken from '../utils/verifyToken.js';
 
 const router = express.Router();
 
-router.get('/:showId', verifyToken, bookingController.gTotForm);
+router.get('/:showId', verifyToken, bookingController.goTotForm);
 
 router.post('/:showId', verifyToken, bookingController.bookSeat);
 

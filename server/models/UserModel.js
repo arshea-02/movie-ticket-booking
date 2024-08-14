@@ -21,11 +21,15 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: [true, 'This is a required Field'],
-        validator: [(password)=>pkg.matches(password, "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"),
-            "Use special Characters, lower and upper case alphabets and digits"
-        ],
+        minlength: [8, 'Minimum length should be 8 characters'],
     },
+    isAdmin:{
+        type: Boolean,
+        default: false,
+    },
+    resetPassword: String,
+    resetPasswordExpiresAt: Date,
+    verificationToken: String,
 })
 
-const User = mongoose.model('User', userSchema);
-export default User;
+export default mongoose.model('User', userSchema);
