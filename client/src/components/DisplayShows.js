@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import axios from 'axios'
 //import Cookies from 'js-cookie'
 import Footer from "./partials/Footer"
@@ -33,7 +33,7 @@ const DisplayShows = () =>{
             navigate('/')
         }
         getShows();
-    }, [shows])
+    }, [])
     return(
         <>
             {loading ? (<div>loading</div>) :
@@ -44,9 +44,14 @@ const DisplayShows = () =>{
                     <div className="header">
                         <h1>{moviename}</h1>
                     </div>
-                    {shows.map((show, index)=>(
-                        <Shows key={index} show={show}/>
-                    ))}
+                    <Link to='/addshow'><button className='add-show'>Add Shows</button></Link>
+
+                    {shows? (
+                        shows.map((show, index)=>(
+                        <Shows key={index} show={show}/>)))
+                        :
+                        <></>
+                    }
                 </div>
                  <Footer />
             </>)}
