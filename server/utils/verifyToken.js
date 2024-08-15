@@ -2,8 +2,8 @@ import jwt from 'jsonwebtoken'
 import 'dotenv/config'
 
 function verifyToken(req, res, next){
-    const token = req.cookies.jwt;
-    //const token = req.headers.authorization?.split(' ')[1];
+    //const token = req.cookies.jwt;
+    const token = req.headers.authorization?.split(' ')[1];
     if(!token){
         res.status(401).json('First login');
         //redirect('/login')

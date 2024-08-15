@@ -8,7 +8,7 @@ const displayShows = async (req, res)=>{
         const movieId = req.params.movieId;
         const shows = await Show.find({movieId}).sort({createdAt: 1});
         if(shows.length===0){
-            res.status(204).json('No shows Exist for this Movie')
+            return res.status(204).json('No shows Exist for this Movie')
         }
         res.status(200).json(shows);
     }catch(err){
@@ -28,9 +28,10 @@ const reserveSeats = async (req, res)=>{
 }
 
 const createShow = async (req, res)=>{
-    const { moviename, showDate, startTime, endTime } = req.body;
+    const { moviename, showDate, startTime, endTime, totalSeats } = req.body;
+    let show;
     try{
-        const showId = "sh" + await createID(moviename);
+        const showId = "sh" + createID(moviename);
         const movie = await Movie.findOne({moviename});
         if(!movie){
             return res.status(404).json('Movie not Found');
@@ -39,7 +40,11 @@ const createShow = async (req, res)=>{
         if(!validShow){
             return res.status(validShow.status).json(validShow.message);
         }
-        const show = new Show({ showId, movieId: movie.movieId, showDate, startTime, endTime });
+        if(totalSeats === 0){
+            show = new Show({ showId, movieId: movie.movieId, showDate, startTime, endTime });
+        }else{
+            show = new Show({ showId, movieId: movie.movieId, showDate, startTime, endTime, totalSeats })
+        }
         await show.save();
         res.status(201).json('Show Created');
     

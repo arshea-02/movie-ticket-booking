@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.post('/add', verifyToken, isAdmin, showController.createShow);
 
-router.put('/edit/:id', isAdmin, verifyToken, showController.editShow);
+router.put('/edit/:id', verifyToken, isAdmin, showController.editShow);
 
-router.put('/delete/:id', isAdmin, verifyToken, showController.editShow);
+router.delete('/delete/:id', verifyToken, isAdmin, showController.deleteShow);
 
 router.get('/view/:movieId', verifyToken, showController.displayShows);
 

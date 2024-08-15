@@ -11,6 +11,13 @@ import bookingRoutes from  './routes/bookingRoutes.js'
 
 const PORT = process.env.SERVER_PORT;
 const app = express();
+
+// const corsOptions={
+//     origin:[process.env.FRONTEND_URL],
+//     methods: ["PUT","GET","DELETE","POST"],
+//     credentials: true
+// }
+
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
@@ -28,6 +35,8 @@ app.use(fileUpload({
     useTempFiles: true,
     tempFileDir: '/tmp/'
 }));
+
+
 
 app.get('/', (req, res)=>{
     res.status(200).redirect('/movies')

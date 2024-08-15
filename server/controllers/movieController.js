@@ -1,7 +1,7 @@
 import Movie from '../models/MovieModel.js'
 import User from '../models/UserModel.js'
 import createID from '../utils/createID.js';
-import cloudinary from 'cloudinary'
+import cloudinary from '../middleware/cloudinary.js'
 
 const movieIndex = async (req, res)=>{
     try{
@@ -37,17 +37,16 @@ const postMovieAdd = async (req, res)=>{
         const movieId = createID(moviename);
         const admin = await User.findById(req.id);
         const adminId = admin.username;
+
         const cloudinaryResponse = await cloudinary.uploader.upload(
             poster.tempFilePath
         ) 
         if(!cloudinaryResponse){
             return res.status(400).json('Unknown Cloudinary Error');
         }
-        //console.log(cloudinaryRes.secure_url);
         const movie = new Movie({ movieId, moviename, 
-            poster: { public_id: cloudinaryResponse.public_id, url: cloudinaryResponse.secure_url}
-            ,duration: duration + "mins", genre, rated, adminId });
-        
+            poster: { public_id: cloudinaryResponse.public_id, url: cloudinaryResponse.secure_url},
+            duration: duration + "mins", genre, rated, adminId });
         await movie.save();
         res.status(201).json('Movie Added');
     }catch(err){
