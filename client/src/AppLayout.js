@@ -4,6 +4,8 @@ import Signup from './components/Signup.js'
 import Login from './components/Login.js'
 import DisplayShows from './components/DisplayShows.js'
 import BookSeats from './components/BookSeats.js'
+import AddMovie from './components/AddMovie.js'
+import AddShow from './components/AddShow.js'
 
 function AppLayout() {
     const router = createBrowserRouter([
@@ -28,12 +30,12 @@ function AppLayout() {
             element: <BookSeats />
         },
         {
-            path: '/addmovies',
-            //{element: <AddMovie />}
+            path: '/addmovie',
+            element: <AddMovie />
         },
         {
-            path: '/addshoes',
-            //{element: <AddShow />}
+            path: '/addshow',
+            element: <AddShow />
         },
     ])
     return(

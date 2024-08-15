@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-//import Cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 //import { Link } from 'react-router-dom'
 import axios from 'axios'
 //import Header from './partials/Header'
@@ -33,7 +33,7 @@ function Login(){
             const payload =  { username: inputValues.username, password: inputValues.password }
             const result = await axios.post(
               "http://localhost:3000/user/login",
-              payload
+              payload,
             );
 
             if(result.errors){
@@ -52,6 +52,8 @@ function Login(){
                         }
                     }
                     localStorage.setItem('token', result.data.token)
+                    Cookies.set('jwt', result.data.token);
+                    //axios.put("http://localhost:3000/", Cookies(result.data.token));
                     navigate('/');
                 }catch(err){console.log(err)}
                 

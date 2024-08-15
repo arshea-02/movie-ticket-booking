@@ -47,8 +47,7 @@ const Header = ({ movies })=> {
             <div className='buttons'>
             {console.log(isAdmin)}
             {isAdmin ?
-                (<><Link to='/addmovie'><button>Add Movies</button></Link>
-                <Link to='/addshows'><button>Add Shows</button></Link></>) :
+                (<Link to='/addmovie'><button>Add Movies</button></Link>) :
                 (<></>)
             }
             {token ?
