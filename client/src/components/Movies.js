@@ -27,7 +27,7 @@ const Movies = () =>{
         localStorage.removeItem('poster');
 
         getMovies();
-    }, [])
+    })
 
     return(
         <>

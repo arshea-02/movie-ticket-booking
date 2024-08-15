@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'
 //import cloudinary from 'cloudinary'
 //Yimport cors from 'cors'
-import '../assests/movieForm.css'
+//import 'dotenv/config'
+import '../assests/addForm.css'
 import Header from './partials/Header'
+import Footer from './partials/Footer'
 
-import Footer from './partials/Footer';
 const AddMovie = () =>{
     const [inputMovie, setInputMovie] = useState({
         moviename: '',
@@ -16,11 +17,10 @@ const AddMovie = () =>{
         rated: ''
     });
     const [inputPoster, setInputPoster] = useState('');
-    const [posterPreview, setPoterPreview] = useState('');
     const navigate = useNavigate();
 
     const movieError = document.querySelector('.moviename.errors');
-    //const movieError = document.querySelector('.movienaem.errors')
+    const posterError = document.querySelector('.poster.errors')
     const durationError = document.querySelector('.duration.errors');
     const genreError = document.querySelector('.genre.errors')
     const ratedError = document.querySelector('.rated.errors')
@@ -35,20 +35,14 @@ const AddMovie = () =>{
 
     const handlePoster = async(e) =>{
         const image = e.target.files[0];
-        const preview = new FileReader();
-        preview.readAsDataURL(image);
-        preview.onload = () =>{
-            setPoterPreview(preview.result);
-        }
         setInputPoster(image);
-        
-        console.log(inputPoster);
     }
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
 
         movieError.textContent='';
+        posterError.textContent='';
         durationError.textContent='';
         genreError.textContent='';
         ratedError.textContent='';
@@ -61,8 +55,6 @@ const AddMovie = () =>{
             formData.append('genre', inputMovie.genre);
             formData.append('rated', inputMovie.rated);
 
-            //const payload = {moviename: inputMovie.moviename, poster: inputPoster, duration: inputMovie.duration, genre: inputMovie.genre, rated: inputMovie.rated}
-            //console.log(payload);
             const response = await axios.post("http://localhost:3000/movies/add", formData, 
                 {headers: {Authorization: `Bearer ${Cookies.get('jwt') }`}});
 
@@ -70,12 +62,12 @@ const AddMovie = () =>{
 
             if(response.errors){
                 movieError.textContent = response.errors.moviename;
+                //posterError.textContent = response.errors.poster;
                 durationError.textContent = response.errors.duration;
                 genreError.textContent = response.errors.genre;
                 ratedError.textContent = response.errors.rated;
             }
             else{
-                localStorage.setItem('poster', posterPreview);
                 navigate('/');
             }
 
@@ -92,7 +84,6 @@ const AddMovie = () =>{
                 <input type='text' name='moviename' value={inputMovie.moviename} onChange={handleChange} placeholder="Movie"/></label>
                 <p className='moviename errors'></p>
                 <label>Movie Poster<p className='required'>*</p>
-                <img src={posterPreview ? `${posterPreview}`: ''} alt='poster'/>
                 <input type='file' onChange={handlePoster} placeholder="poster"/></label>
                 <p className='poster errors'></p>
                 <label>Duration<p className='required'>*</p>

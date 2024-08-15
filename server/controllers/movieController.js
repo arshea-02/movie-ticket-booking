@@ -44,11 +44,12 @@ const postMovieAdd = async (req, res)=>{
         if(!cloudinaryResponse){
             return res.status(400).json('Unknown Cloudinary Error');
         }
+        //console.log(cloudinaryResponse.secure_url);
         const movie = new Movie({ movieId, moviename, 
             poster: { public_id: cloudinaryResponse.public_id, url: cloudinaryResponse.secure_url},
             duration: duration + "mins", genre, rated, adminId });
         await movie.save();
-        res.status(201).json('Movie Added');
+        res.status(201).json({ secure_url: cloudinaryResponse.secure_url });
     }catch(err){
         console.log(err)
         res.status(400).json('Something went wrong');

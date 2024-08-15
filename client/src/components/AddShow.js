@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie'
-import '../assests/movieForm.css'
+import '../assests/addForm.css'
 import Header from './partials/Header'
 import Footer from './partials/Footer';
 
@@ -74,6 +74,7 @@ const AddShow = () =>{
                 <p className='end errors'></p>
                 <label>Total Seast
                 <input type='text' name='totalseats' value={inputShow.totalSeats} onChange={handleChange} placeholder="0"/></label>
+                <></>
                 <button type='submit'>Add</button>
             </form>
         </div>

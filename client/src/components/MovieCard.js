@@ -6,7 +6,6 @@ import '../assests/moviecard.css'
 const MovieCard = ({ movie, isAdmin }) =>{
     const navigate = useNavigate();
     const token = localStorage.getItem('token');
-    const poster = localStorage.getItem('poster');
     //const isAdmin = localStorage.getItem('isAdmin');
     Cookies.set('jwt', token)
 
@@ -27,12 +26,11 @@ const MovieCard = ({ movie, isAdmin }) =>{
             const _id = e.target.parentElement.dataset.doc;
             deleteMovie(_id);
         }
-        localStorage.removeItem('poster');
     }
 
     const handleLocalStorage = () =>{
         localStorage.setItem('movieId', movie.movieId )
-        localStorage.setItem('poster', movie.poster)
+        localStorage.setItem('poster', movie.poster.secure_url)
         localStorage.setItem('movie', movie.moviename);
         navigate(`/${movie.movieId}/shows`)
     }
@@ -44,7 +42,7 @@ const MovieCard = ({ movie, isAdmin }) =>{
                 <Link to='/editMovie'><button className='edit-btn'>Edit</button></Link>
             </>): <></>}
             <h3 className='content'>{movie.moviename}</h3>
-            <img src={poster} alt={movie.moviename}/>
+            <img src={movie.poster.url} alt={movie.moviename}/>
             <button id={movie.movieId} className='view-shows' onClick={handleLocalStorage}>View Shows</button>
         </div>
     )

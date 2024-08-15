@@ -13,9 +13,10 @@ const DisplayShows = () =>{
     const [loading, setLoading] = useState(true);
 
     const navigate = useNavigate();
+    const isAdmin = localStorage.getItem('isAdmin');
     const movieId = localStorage.getItem('movieId');
     const token = localStorage.getItem('token')
-    const moviePoster = localStorage.getItem('poster');
+    const poster = localStorage.getItem('poster');
     const moviename = localStorage.getItem('movie');
 
     const getShows = async() =>{
@@ -33,18 +34,21 @@ const DisplayShows = () =>{
             navigate('/')
         }
         getShows();
-    }, [])
+    })
     return(
         <>
             {loading ? (<div>loading</div>) :
             (<>
                 <Header />
                 <div className='show-container'>
-                    <img src={moviePoster} alt='Movie Poster' />
-                    <div className="header">
+                    <img src={poster} alt='Movie Poster' />
+                    <div className="heading">
                         <h1>{moviename}</h1>
+                        {isAdmin? 
+                            (<Link to='/addshow'><button className='add-show'>Add Shows</button></Link>) :
+                        <></>}
                     </div>
-                    <Link to='/addshow'><button className='add-show'>Add Shows</button></Link>
+                    
 
                     {shows? (
                         shows.map((show, index)=>(

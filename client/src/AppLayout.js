@@ -6,6 +6,8 @@ import DisplayShows from './components/DisplayShows.js'
 import BookSeats from './components/BookSeats.js'
 import AddMovie from './components/AddMovie.js'
 import AddShow from './components/AddShow.js'
+import EditMovie from './components/EditMovie.js'
+import EditShow from './components/EditShow.js'
 
 function AppLayout() {
     const router = createBrowserRouter([
@@ -34,8 +36,16 @@ function AppLayout() {
             element: <AddMovie />
         },
         {
+            path: '/editmovie',
+            element: <EditMovie />
+        },
+        {
             path: '/addshow',
             element: <AddShow />
+        },
+        {
+            path: 'editshow',
+            element: <EditShow />
         },
     ])
     return(
