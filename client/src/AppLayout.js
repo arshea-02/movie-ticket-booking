@@ -1,28 +1,42 @@
 import { RouterProvider, createBrowserRouter} from 'react-router-dom'
-import Header from './components/partials/Header.js'
+import Movies from './components/Movies.js'
+import Signup from './components/Signup.js'
+import Login from './components/Login.js'
+import DisplayShows from './components/DisplayShows.js'
+import BookSeats from './components/BookSeats.js'
+import AddMovie from './components/AddMovie.js'
+import AddShow from './components/AddShow.js'
 
 function AppLayout() {
     const router = createBrowserRouter([
         {
             path: '/',
-            element: <Header />
+            element: <Movies />
         },
         {
             path: '/signup',
-            // {element: <Signup />>}
+            element: <Signup />
         },
         {
             path: '/login',
-            // {element: <Login />}
+            element: <Login />
         },
         {
-            path: '/movie/:id',
-            // {element: <Shows />}
+            path: '/:id/shows',
+            element: <DisplayShows />
         },
         {
-            path: '/show/:id',
-            // {element: <BookSeats />}
-        }
+            path: '/:id/bookseats',
+            element: <BookSeats />
+        },
+        {
+            path: '/addmovie',
+            element: <AddMovie />
+        },
+        {
+            path: '/addshow',
+            element: <AddShow />
+        },
     ])
     return(
         <RouterProvider router = {router}/>

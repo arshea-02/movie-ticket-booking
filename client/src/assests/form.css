@@ -1,0 +1,80 @@
+.card {
+  background-color: rgb(200, 172, 214);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.card h2 {
+  color: rgb(67, 61, 139);
+  text-align: center;
+  margin-top: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form label{
+  display: block;
+  color: rgb(67, 61, 139);
+  height: 4em;
+  text-align: left;
+  margin-left: 2em;
+  justify-content: center;
+  font-weight: bold;
+  align-items: baseline;
+}
+.required{
+  display: inline;
+  margin-left: 0.2em;
+  color: rgb(213, 6, 6);
+}
+
+.form input{
+  display: block;
+  width: 80%;
+  height: 3em;
+  margin: 1em 0;
+  padding: 0 0.5em;
+  align-self: center;
+  border-radius: 8px;
+}
+
+.form .errors{
+  color: rgb(213, 6, 6);
+  font-size: small;
+  text-align: left;
+  margin-left: 2em;
+  margin-bottom: 2em;
+}
+
+.form input::placeholder {
+  color: rgb(67, 61, 139);
+}  
+
+.forgot {
+  color: rgb(255, 0, 0);
+}
+
+
+.form button {
+  background-color: rgb(67, 61, 139);
+  border: none;
+  color: rgb(234, 222, 241);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.form button:hover {
+  border: 1px solid rgb(23, 21, 59);
+}
