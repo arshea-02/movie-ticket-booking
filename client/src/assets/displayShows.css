@@ -1,0 +1,55 @@
+.show-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show-container .poster {
+  width: 300px;
+  height: auto;
+}
+
+.heading {
+  display: flex;
+  width: 84%;
+  margin-top: 10px;
+  margin-bottom: 0.3em;
+  justify-content: space-between;
+  align-items: left;
+}
+
+.heading h1 {
+  margin: 0 0.2em 0 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.movie-info{
+  display: inline-flex;
+  float: left;
+}
+
+.movie-info p {
+  margin: 0.1em;
+  padding: 0.3em;
+  text-align: justify;
+  font-size: small;
+  height: fit-content;
+  background-color: #2E236C;
+}
+
+.add-show {
+  float: right;
+  padding: 10px 20px;
+  background-color: rgb(194, 4, 4);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.add-show:hover {
+  background-color: rgb(23, 21, 59);
+}

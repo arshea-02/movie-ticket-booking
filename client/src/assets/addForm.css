@@ -1,0 +1,85 @@
+.card {
+  width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 2px solid #2E236C;
+  border-radius: 5px;
+  background-color: #2E236C; /* Light background */
+}
+
+.card:hover {
+  box-shadow: 0 2px 5px rgb(200, 172, 214);
+}
+
+.card h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #eae6e6;
+}
+
+.form {
+  display: flex;
+}
+
+.form label {
+  font-weight: bold;
+  color: #eae6e6;
+}
+
+.form input[type="text"],
+.form input[type="file"] {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  color: #333;
+}
+
+.form input[type="file"] {
+  border: none; 
+  color: #eae6e6;
+}
+
+.form input[type="text"]:focus,
+.form input[type="file"]:focus {
+  outline: none;
+  border-color: #433d8b; /* Focus color */
+  box-shadow: 0 0 5px rgba(67, 61, 139, 0.5); /* Focus shadow */
+}
+
+.form button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #c8acda; /* Button background color */
+  color: #333;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+
+.form button[type="submit"]:hover {
+  background-color: #a081c9; /* Darker button color on hover */
+}
+
+.form .required {
+  color: red;
+}
+
+.form .errors {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+  .card {
+    width: 90%;
+  }
+
+  .form input[type="text"],
+  .form input[type="file"] {
+    width: 100%;
+  }
+}
+
+.form input::placeholder {
+  color: #aaa; /* Lighter placeholder color */
+}

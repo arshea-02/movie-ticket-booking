@@ -1,0 +1,25 @@
+.footer {
+  width: 100%;
+  height: 8em;
+  background-color: rgb(23, 21, 59);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+}
+  
+  /* .footer h2 {
+    margin: 0;
+    text-decoration: none;
+    color: white;
+  } */
+  
+  /* .footer h2 a {
+    text-decoration: none;
+    color: white;
+  } */
+  
+  .footer p {
+    justify-self: center;
+    font-size: smaller;
+    margin: 0;
+  }

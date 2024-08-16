@@ -1,0 +1,104 @@
+.show {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(67, 61, 139);
+  border: 2px solid rgb(23, 21, 59);
+  border-radius: 2px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 0.2em 0;
+}
+
+.show .content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 1rem;
+}
+
+.show .content h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: rgb(244, 244, 244);
+}
+
+.show .content p {
+  margin: 0.5rem 0 0 0;
+  padding: 0.2em;
+  font-size: 1.3rem;
+  border: 2px solid rgb(23, 21, 59);
+  color: rgb(244, 244, 244);
+}
+
+.show-btn{
+  display: flex;
+  flex-direction: column;
+}
+
+.show-btn .admin-priv {
+  display: block;
+  width: 5em;
+  border-radius: 3px;
+  background-color: antiquewhite;
+  margin-bottom: 0.2em;
+}
+
+.del-btn,
+.edit-btn {
+  width: 2em;
+  height: 1em;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.del-btn:hover:hover, .edit-btn:hover:hover {
+  background-color: rgb(211, 202, 177);
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.show .book-seat {
+  background-color: rgb(194, 4, 4);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.show .book-seat:hover {
+  background-color: rgb(23, 21, 59);
+}
+
+
+
+@media (max-width: 768px) {
+  .show {
+    flex-direction: column;
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+
+  .show .content {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .show .book-seat {
+    width: 100%;
+    text-align: center;
+  }
+
+  .show .del-btn,
+  .show .edit-btn {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
