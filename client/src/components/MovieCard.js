@@ -32,18 +32,24 @@ const MovieCard = ({ movie, isAdmin }) =>{
         localStorage.setItem('movieId', movie.movieId )
         localStorage.setItem('poster', movie.poster.secure_url)
         localStorage.setItem('movie', movie.moviename);
-        navigate(`/${movie.movieId}/shows`)
+        localStorage.setItem('duration', movie.duration);
+        localStorage.setItem('genre', movie.genre);
+        localStorage.setItem('rated', movie.rated);
+        
+        token? 
+        navigate(`/${movie.movieId}/shows`) :
+        navigate('/login');
     }
     
     return(
         <div className="movie-card">
             {isAdmin ? (<>
                 <Link to='/' data-doc={movie._id}><button className='del-btn' onClick={handleClick}>Del</button></Link>
-                <Link to='/editMovie'><button className='edit-btn'>Edit</button></Link>
+                <Link to={`/editMovie/${movie._id}`} ><button className='edit-btn'>Edit</button></Link>
             </>): <></>}
             <h3 className='content'>{movie.moviename}</h3>
             <img src={movie.poster.url} alt={movie.moviename}/>
-            <button id={movie.movieId} className='view-shows' onClick={handleLocalStorage}>View Shows</button>
+            <button className='view-shows' onClick={handleLocalStorage}>View Shows</button>
         </div>
     )
 }

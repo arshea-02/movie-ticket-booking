@@ -25,6 +25,9 @@ const Movies = () =>{
         localStorage.removeItem('movieId');
         localStorage.removeItem('movie');
         localStorage.removeItem('poster');
+        localStorage.removeItem('genre');
+        localStorage.removeItem('duration');
+        localStorage.removeItem('rated');
 
         getMovies();
     })

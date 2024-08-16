@@ -45,8 +45,7 @@ function Login(){
                     const response = await axios.get("http://localhost:3000/user");
                     for(const user of response.data){
                         if(user.username === inputValues.username){
-                            console.log(user.isAdmin);
-                        user.isAdmin===true? 
+                            user.isAdmin===true ? 
                             localStorage.setItem('isAdmin', user.isAdmin) :
                             localStorage.removeItem('isAdmin');
                         }
