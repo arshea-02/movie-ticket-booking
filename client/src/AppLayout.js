@@ -36,7 +36,7 @@ function AppLayout() {
             element: <AddMovie />
         },
         {
-            path: '/editmovie',
+            path: '/editmovie/:movieId',
             element: <EditMovie />
         },
         {
@@ -44,7 +44,7 @@ function AppLayout() {
             element: <AddShow />
         },
         {
-            path: 'editshow',
+            path: '/editshow/:showId',
             element: <EditShow />
         },
     ])

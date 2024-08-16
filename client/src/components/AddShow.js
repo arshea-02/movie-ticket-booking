@@ -13,7 +13,6 @@ const AddShow = () =>{
         date: '',
         startTime: '',
         endTime: '',
-        totalSeats: ''
     });
     const navigate = useNavigate();
     const movieId = localStorage.getItem('movieId');
@@ -38,7 +37,7 @@ const AddShow = () =>{
 
         try{
 
-            const payload = {moviename: moviename, showDate: inputShow.date, startTime: inputShow.startTime, endTime: inputShow.endTime, totalSeats: inputShow.totalSeats}
+            const payload = {moviename: moviename, showDate: inputShow.date, startTime: inputShow.startTime, endTime: inputShow.endTime}
             console.log(payload);
             const response = await axios.post("http://localhost:3000/shows/add", payload, 
                 {headers: {Authorization: `Bearer ${Cookies.get('jwt') }`}});
@@ -72,9 +71,6 @@ const AddShow = () =>{
                 <label>End Time<p className='required'>*</p>
                 <input type='time' name='endTime' value={inputShow.endTime} onChange={handleChange} placeholder="End Time"/></label>
                 <p className='end errors'></p>
-                <label>Total Seast
-                <input type='text' name='totalseats' value={inputShow.totalSeats} onChange={handleChange} placeholder="0"/></label>
-                <></>
                 <button type='submit'>Add</button>
             </form>
         </div>

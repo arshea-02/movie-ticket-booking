@@ -45,7 +45,6 @@ const Header = ({ movies })=> {
                 </ul></>) :
             (<div></div>)}
             <div className='buttons'>
-            {console.log(isAdmin)}
             {isAdmin ?
                 (<Link to='/addmovie'><button>Add Movies</button></Link>) :
                 (<></>)

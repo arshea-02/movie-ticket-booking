@@ -8,7 +8,7 @@ const movieIndex = async (req, res)=>{
         const movies = await Movie.find().sort({ createdAt: -1 });
         res.status(200).json(movies);
     }catch(err){
-        res.status(400).json('No movies', err);
+        res.status(400).json('No movies', {err});
     }
 }
 
@@ -65,9 +65,10 @@ const editMovie = async (req, res)=>{
             res.status(404).json('Movie not Found');
         }
         await movie.updateOne();
-        res.status(200).json({ movie });
+        res.status(200).json( "Movie Updated" );
     }catch(err){
-        res.status(400).json('bad request')
+        console.log(err)
+        res.status(400).json({err})
     }
 }
 

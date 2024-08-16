@@ -4,9 +4,9 @@ import convertTimeToMinutes from '../utils/convertTimeToMinutes.js';
 const isShowValid = async(showDate, startTime, endTime)=>{
      
     try{
-        const showsOnSaneDay = await Show.find({showDate})
-        if(showsOnSaneDay){    
-            const overlappingShows = showsOnSaneDay.some(show => {
+        const showsOnSameDay = await Show.find({showDate})
+        if(showsOnSameDay){    
+            const overlappingShows = showsOnSameDay.some(show => {
                 const showStartTime = convertTimeToMinutes(show.startTime);
                 const showEndTime = convertTimeToMinutes(show.endTime);
                 const newShowStartTime = convertTimeToMinutes(startTime);
@@ -18,7 +18,7 @@ const isShowValid = async(showDate, startTime, endTime)=>{
                 ) 
             });
             if(overlappingShows){
-                return false;
+                return { status: 409, message: "Time slot not available"};
             }
         }
         return true;
