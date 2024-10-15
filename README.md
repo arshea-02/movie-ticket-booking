@@ -5,13 +5,13 @@
 - REST APIs are used in the backend
 - Assigned unique custom IDs to admins, users, movies and shows
 - Different navigation bar for Admin and User interface
-## Admin Priviliges
+## Admin Privileges
 - @admin is the domain for admin users
 - Signup, Login
 - Add, remove and edit movies
 - Add, remove and edit Shows
 - Shows with conflicting times can not be added
-## User Priviliges
+## User Privileges
 - Signup, Login
 - User Authentication
 - View Movies and shows
